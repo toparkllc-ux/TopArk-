@@ -17,21 +17,21 @@ const stats = [
 
 const founders = [
   { initials: "NW", name: "Noah Whittle", role: "Founder & CEO", bio: "Former pro RB, 6 years international. Solingen Paladins, Nürnberg Rams (Germany/GFL), Husaria Szczecin (Poland), Tequileros de Jalisco (Mexico). Originally from New York, based in Georgetown/Austin TX.", tags: ["Germany/GFL", "Poland", "Mexico"] },
-  { initials: "KB", name: "Kenneth Bradley", role: "Chief Strategy Officer", bio: "LB, 7 years pro across 4 countries. LFA Champion 2024, LFA All-Pro 2023 & 2024. All-time leading tackler at Ithaca College.", tags: ["Germany/GFL", "Denmark", "Finland", "Mexico"] },
-  { initials: "RH", name: "Ronnie Hicks", role: "Director of Recruiting", bio: "DB/WR out of Cal Poly Humboldt. Played across 5 countries including France, Germany, Hungary, and Mexico. From San Diego, CA.", tags: ["France", "Germany", "Hungary", "Mexico"] },
-  { initials: "ET", name: "Eldridge Thompson", role: "Combine Lead & Talent Scout", bio: "LB/Safety out of South Carolina (SEC). Leads TopArk combine operations and scouts underdog talent at schools nationwide. From Memphis, TN.", tags: ["Mexico", "LB/Safety", "Scout"] },
+  { initials: "KB", name: "Kenneth Bradley", role: "Partner & CSO", bio: "LB, 7 years pro across 4 countries. LFA Champion 2024, LFA All-Pro 2023 & 2024. All-time leading tackler at Ithaca College. From New Jersey.", tags: ["Denmark", "Finland", "Mexico"] },
+  { initials: "RH", name: "Ronnie Hicks", role: "Partner & Director of Recruiting", bio: "DB/WR out of Cal Poly Humboldt. Played across 5 countries including France, Germany, Hungary, and Mexico. From San Diego, CA.", tags: ["France", "Germany", "Hungary", "Mexico"] },
+  { initials: "ET", name: "Eldridge Thompson", role: "Partner & Combine Lead", bio: "LB/Safety out of South Carolina (SEC). Leads TopArk combine operations and scouts underdog talent at schools nationwide. From Memphis, TN.", tags: ["Mexico", "LB/Safety", "Scout"] },
 ];
 
 const countries = ["Germany","France","Sweden","Italy","Spain","Austria","Czech Republic","Mexico","Poland","Denmark","Finland","Hungary","Netherlands","Switzerland","Belgium"];
 
 const plans = [
-  { name: "Free", price: "0", badge: null, featured: false, desc: "Start your international journey and get discovered by teams worldwide.", features: [{ t: "Basic athlete profile", on: true },{ t: "Appear in team search results", on: true },{ t: "Up to 4 messages/month from teams", on: true },{ t: "TopArk news & updates", on: true },{ t: "Interview requests", on: false },{ t: "Direct messaging with teams", on: false },{ t: "Film & highlight uploads", on: false },{ t: "Verified badge", on: false },], cta: "Get Started Free", href: "/signup" },
-  { name: "Elite", price: "29", badge: "Most Popular", featured: true, desc: "Full access to communicate, upload film, and get placed on international teams.", features: [{ t: "Full verified athlete profile", on: true },{ t: "Priority placement in search", on: true },{ t: "Unlimited interview requests", on: true },{ t: "Unlimited direct messaging", on: true },{ t: "Film uploads (up to 5)", on: true },{ t: "Verified badge", on: true },{ t: "Combine invitations", on: true },{ t: "Community chat rooms", on: true },], cta: "Go Elite", href: "/signup?plan=elite" },
-  { name: "Pro Ark", price: "79", badge: null, featured: false, desc: "White-glove placement with a dedicated advisor, custom outreach, and VIP combine access.", features: [{ t: "Everything in Elite", on: true },{ t: "Unlimited film uploads", on: true },{ t: "Dedicated placement advisor", on: true },{ t: "2 advisor meetings/month", on: true },{ t: "Custom outreach to target teams", on: true },{ t: "Contract review support", on: true },{ t: "VIP combine + coaching", on: true },{ t: "Featured athlete spotlight", on: true },], cta: "Go Pro Ark", href: "/signup?plan=pro" },
+  { name: "Free", price: "0", badge: null, featured: false, desc: "Build your profile, get discovered by teams, and receive up to 4 messages per month at no cost.", features: [{ t: "Basic athlete profile", on: true },{ t: "Appear in team search results", on: true },{ t: "Receive up to 4 messages/month from teams", on: true },{ t: "TopArk news & updates", on: true },{ t: "Interview requests", on: false },{ t: "Direct messaging with teams", on: false },{ t: "Film & highlight uploads", on: false },{ t: "Verified badge", on: false },], cta: "Get Started Free", href: "/signup" },
+  { name: "Elite", price: "14.99", badge: "Most Popular", featured: true, desc: "Full verified access — message teams, upload film, and unlock priority placement in search.", features: [{ t: "Full verified athlete profile", on: true },{ t: "Priority placement in search", on: true },{ t: "Unlimited interview requests", on: true },{ t: "Unlimited direct messaging with teams", on: true },{ t: "Film & highlight reel uploads (up to 5)", on: true },{ t: "Verified badge on profile", on: true },{ t: "Exclusive combine invitations", on: true },{ t: "Community chat rooms", on: true },], cta: "Go Elite", href: "/signup?plan=elite" },
+  { name: "Pro Ark", price: "49.99", badge: null, featured: false, desc: "Everything in Elite plus dedicated advisor support, custom team outreach, and VIP combine access.", features: [{ t: "Everything in Elite", on: true },{ t: "Unlimited film uploads", on: true },{ t: "Dedicated TopArk placement advisor", on: true },{ t: "2 advisor meetings per month", on: true },{ t: "Custom outreach to target teams", on: true },{ t: "Contract review support", on: true },{ t: "VIP combine access + coaching", on: true },{ t: "Featured athlete spotlight (social media)", on: true },], cta: "Go Pro Ark", href: "/signup?plan=pro" },
 ];
 
 const testimonials = [
-  { quote: "TopArk got me signed in Germany within 3 weeks of creating my profile. No middlemen, no BS. Direct contact with the team.", name: "Marcus Johnson", detail: "Wide Receiver", country: "Nürnberg, Germany" },
+  { quote: "TopArk got me signed in Germany within 3 weeks of creating my profile. Direct contact with the team, no runaround.", name: "Marcus Johnson", detail: "Wide Receiver", country: "Nürnberg, Germany" },
   { quote: "As a coach in Denmark, finding American talent used to take months. Now I browse verified athletes and set up video calls the same day.", name: "Lars Eriksen", detail: "Head Coach", country: "Triangle Razorbacks, Denmark" },
   { quote: "I played 4 countries in 2 years all through TopArk. This platform is the real deal for anyone serious about playing internationally.", name: "Deon Williams", detail: "Linebacker", country: "France → Germany → Mexico" },
   { quote: "The Pro Ark advisor emailed 12 teams on my behalf and got me 4 interview calls in one week. Changed my career entirely.", name: "Tyrell Baptiste", detail: "Running Back", country: "Jalisco, Mexico" },
@@ -68,7 +68,7 @@ export default function Home() {
             YOUR GAME.<br /><span style={{ color:S.gold }}>YOUR WORLD.</span>
           </h1>
           <p style={{ fontSize:18, fontWeight:300, color:S.light, maxWidth:520, lineHeight:1.7, marginBottom:48 }}>
-            TopArk connects American football athletes directly with professional teams across Europe, Mexico, and beyond. 108+ signings. No agents. No middlemen.
+            TopArk is a football recruiting platform that connects American athletes directly with professional teams across Europe, Mexico, and beyond. 108+ signings. Verified athletes. Real opportunities.
           </p>
           <div style={{ display:"flex", gap:16, flexWrap:"wrap" }}>
             <Link href="/signup" style={{ background:S.gold, color:S.black, fontSize:13, fontWeight:700, letterSpacing:2, textTransform:"uppercase", padding:"16px 36px", textDecoration:"none" }}>Create Your Profile</Link>
@@ -104,12 +104,12 @@ export default function Home() {
           <div>
             <p style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:4, textTransform:"uppercase", color:S.gold, marginBottom:16 }}>Our Mission</p>
             <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(40px,5vw,68px)", lineHeight:1, letterSpacing:1, marginBottom:24 }}>BUILT BY PLAYERS,<br /><span style={{ color:S.gold }}>FOR PLAYERS.</span></h2>
-            <p style={{ fontSize:16, fontWeight:300, color:S.light, lineHeight:1.8, marginBottom:32 }}>Noah and his team have lived the international football experience — the language barriers, the contract confusion, the agent fees. TopArk was built to eliminate all of it. Athletes connect directly with teams. Transparent. Fast. Athlete-first.</p>
+            <p style={{ fontSize:16, fontWeight:300, color:S.light, lineHeight:1.8, marginBottom:32 }}>Noah and his team have lived the international football experience — the language barriers, the contract confusion, the uncertainty. TopArk was built to fix all of it. A direct-connection recruiting platform where verified athletes meet teams, no gatekeepers required.</p>
             <Link href="/signup" style={{ background:S.gold, color:S.black, fontSize:12, fontWeight:700, letterSpacing:2, textTransform:"uppercase", padding:"14px 28px", textDecoration:"none" }}>Start Your Journey</Link>
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
             {[
-              { title:"Direct Access", body:"No agents, no middlemen. Athletes and teams communicate directly through the platform." },
+              { title:"Direct Access", body:"Athletes and teams connect directly through the platform. No gatekeepers, no runaround." },
               { title:"Verified Profiles", body:"Every Elite and Pro Ark athlete is verified. Teams know they're getting real talent with real credentials." },
               { title:"Global Network", body:"10+ countries, 45+ partner teams, and growing. Your next opportunity is already on the platform." },
             ].map(c=>(
@@ -131,7 +131,7 @@ export default function Home() {
             {[
               { num:"01", icon:"👤", title:"Create Your Profile", body:"Build a verified athlete profile with your measurables, film, college stats, and international availability. Takes 10 minutes." },
               { num:"02", icon:"🔍", title:"Get Discovered", body:"Teams and coaches across 10+ countries browse our athlete database daily. Elite members get priority placement at the top of search results." },
-              { num:"03", icon:"✍️", title:"Sign & Play", body:"Communicate directly with teams, schedule video calls, review contract terms, and book your flight. No agents. No cuts. Just football." },
+              { num:"03", icon:"✍️", title:"Sign & Play", body:"Communicate directly with teams, schedule video calls, review contract terms, and book your flight. TopArk earns from memberships and combines — never from your contract." },
             ].map(s=>(
               <div key={s.num} style={{ background:S.charcoal, padding:"48px 36px", position:"relative", overflow:"hidden" }}>
                 <span style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:80, color:"rgba(245,196,0,0.08)", lineHeight:1, position:"absolute", top:16, right:24 }}>{s.num}</span>
@@ -303,7 +303,7 @@ export default function Home() {
                 {[
                   { title:"Fast Response", body:"Our team reviews every request within 24–48 hours. Serious inquiries get prioritized." },
                   { title:"Direct Connection", body:"We match athletes with teams based on position, experience, and geographic preferences." },
-                  { title:"No Agent Fees", body:"TopArk charges teams and athletes directly — zero cuts from your signing bonus or contract." },
+                  { title:"No Placement Fees", body:"TopArk's revenue comes from memberships and combines only. We never take a cut of your contract or signing bonus." },
                 ].map(c=>(
                   <div key={c.title} style={{ background:S.black, border:`1px solid ${S.border}`, borderLeft:`3px solid ${S.gold}`, padding:24 }}>
                     <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:18, letterSpacing:1, marginBottom:8 }}>{c.title}</div>

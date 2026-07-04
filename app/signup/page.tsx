@@ -62,8 +62,8 @@ export default function SignupPage() {
               <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:2, background:S.border }}>
                 {[
                   { id:"free", name:"Free", price:"$0", desc:"Basic profile" },
-                  { id:"elite", name:"Elite", price:"$29/mo", desc:"Full access" },
-                  { id:"pro", name:"Pro Ark", price:"$79/mo", desc:"White-glove" },
+                  { id:"elite", name:"Elite", price:"$14.99/mo", desc:"Full access" },
+                  { id:"pro", name:"Pro Ark", price:"$49.99/mo", desc:"White-glove" },
                 ].map(p=>(
                   <div key={p.id} style={{ background:plan===p.id?S.gold:S.charcoal, padding:"20px 16px", textAlign:"center", cursor:"pointer", border:plan===p.id?`2px solid ${S.gold}`:"2px solid transparent" }}>
                     <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:20, letterSpacing:1, color:plan===p.id?S.black:S.white }}>{p.name}</div>

@@ -301,7 +301,7 @@ export default function DashboardPage() {
                   <div>
                     <div style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:3, textTransform:"uppercase", background:S.gold, color:S.black, padding:"4px 12px", display:"inline-block", marginBottom:16, fontWeight:700 }}>Current Plan</div>
                     <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:40, letterSpacing:2 }}>ELITE</div>
-                    <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:32, color:S.gold }}>$29<span style={{ fontSize:16, color:S.gray }}>/month</span></div>
+                    <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:32, color:S.gold }}>$14.99<span style={{ fontSize:16, color:S.gray }}>/month</span></div>
                   </div>
                   <div style={{ textAlign:"right" }}>
                     <div style={{ fontFamily:"'Space Mono',monospace", fontSize:10, color:S.gray, letterSpacing:1, marginBottom:4 }}>Next billing date</div>
@@ -311,7 +311,7 @@ export default function DashboardPage() {
               </div>
               <div style={{ background:S.charcoal, border:`1px solid ${S.border}`, padding:32 }}>
                 <div style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:24, letterSpacing:1, marginBottom:20 }}>UPGRADE TO <span style={{ color:S.gold }}>PRO ARK</span></div>
-                <p style={{ fontSize:14, color:S.gray, marginBottom:24, lineHeight:1.7 }}>Get a dedicated placement advisor, custom outreach to your target teams, and VIP combine access for $79/month.</p>
+                <p style={{ fontSize:14, color:S.gray, marginBottom:24, lineHeight:1.7 }}>Get a dedicated placement advisor, custom outreach to your target teams, and VIP combine access for $49.99/month.</p>
                 <Link href="/signup?plan=pro" style={{ background:S.gold, color:S.black, fontSize:12, fontWeight:700, letterSpacing:2, textTransform:"uppercase", padding:"14px 28px", textDecoration:"none", display:"inline-block" }}>Upgrade to Pro Ark</Link>
               </div>
             </div>

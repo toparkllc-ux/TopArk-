@@ -7,7 +7,7 @@ const subjects = ['General Inquiry', 'Player Inquiry', 'Team Partnership', 'Medi
 
 const teamContacts = [
   { initials: 'NW', name: 'Noah Whittle', role: 'Founder & CEO', email: 'noah@topark.com' },
-  { initials: 'KB', name: 'Kenneth Bradley', role: 'Chief Strategy Officer', email: 'kenneth@topark.com' },
+  { initials: 'KB', name: 'Kenneth Bradley', role: 'Partner & CSO', email: 'kenneth@topark.com' },
 ];
 
 export default function ContactPage() {
