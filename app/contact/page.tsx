@@ -6,8 +6,8 @@ import Nav from '../../components/Nav';
 const subjects = ['General Inquiry', 'Player Inquiry', 'Team Partnership', 'Media Request', 'Combine Information'];
 
 const teamContacts = [
-  { initials: 'NW', name: 'Noah Whittle', role: 'CEO & Co-Founder', email: 'noah@topark.com' },
-  { initials: 'KB', name: 'Kenneth Bradley', role: 'CSO & Co-Founder', email: 'kenneth@topark.com' },
+  { initials: 'NW', name: 'Noah Whittle', role: 'Founder & CEO', email: 'noah@topark.com' },
+  { initials: 'KB', name: 'Kenneth Bradley', role: 'Chief Strategy Officer', email: 'kenneth@topark.com' },
 ];
 
 export default function ContactPage() {

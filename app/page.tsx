@@ -12,14 +12,14 @@ const S = {
 const stats = [
   { num: "108+", label: "Athlete Signings" }, { num: "45+", label: "Partner Teams" },
   { num: "10+", label: "Countries" }, { num: "6", label: "Years Experience" },
-  { num: "4", label: "Founding Partners" }, { num: "100%", label: "Athlete-Direct" },
+  { num: "4", label: "Leadership Team" }, { num: "100%", label: "Athlete-Direct" },
 ];
 
 const founders = [
-  { initials: "NW", name: "Noah Whittle", role: "Founder & CEO", bio: "Former pro RB, 6 years international. Solingen Paladins, Nürnberg Rams (Germany/GFL), Husaria Szczecin (Poland), Tequileros de Jalisco (Mexico).", tags: ["Germany/GFL", "Poland", "Mexico"] },
-  { initials: "KB", name: "Kenneth Bradley", role: "Partner & CSO", bio: "LB, 7 years pro across 4 countries. LFA Champion 2024, LFA All-Pro 2023 & 2024. All-time leading tackler at Ithaca College.", tags: ["Germany/GFL", "Denmark", "Finland", "Mexico"] },
-  { initials: "RH", name: "Ronnie Hicks", role: "Director of Recruiting", bio: "DB/WR out of Cal Poly Humboldt. Played across 5 countries including France, Germany, Hungary, and Mexico.", tags: ["France", "Germany", "Hungary", "Mexico"] },
-  { initials: "ET", name: "Eldridge Thompson", role: "Combine Lead", bio: "LB/Safety out of South Carolina (SEC). Leads TopArk combine operations and scouts underdog talent nationwide.", tags: ["Mexico", "LB/Safety", "Scout"] },
+  { initials: "NW", name: "Noah Whittle", role: "Founder & CEO", bio: "Former pro RB, 6 years international. Solingen Paladins, Nürnberg Rams (Germany/GFL), Husaria Szczecin (Poland), Tequileros de Jalisco (Mexico). Originally from New York, based in Georgetown/Austin TX.", tags: ["Germany/GFL", "Poland", "Mexico"] },
+  { initials: "KB", name: "Kenneth Bradley", role: "Chief Strategy Officer", bio: "LB, 7 years pro across 4 countries. LFA Champion 2024, LFA All-Pro 2023 & 2024. All-time leading tackler at Ithaca College.", tags: ["Germany/GFL", "Denmark", "Finland", "Mexico"] },
+  { initials: "RH", name: "Ronnie Hicks", role: "Director of Recruiting", bio: "DB/WR out of Cal Poly Humboldt. Played across 5 countries including France, Germany, Hungary, and Mexico. From San Diego, CA.", tags: ["France", "Germany", "Hungary", "Mexico"] },
+  { initials: "ET", name: "Eldridge Thompson", role: "Combine Lead & Talent Scout", bio: "LB/Safety out of South Carolina (SEC). Leads TopArk combine operations and scouts underdog talent at schools nationwide. From Memphis, TN.", tags: ["Mexico", "LB/Safety", "Scout"] },
 ];
 
 const countries = ["Germany","France","Sweden","Italy","Spain","Austria","Czech Republic","Mexico","Poland","Denmark","Finland","Hungary","Netherlands","Switzerland","Belgium"];
@@ -104,7 +104,7 @@ export default function Home() {
           <div>
             <p style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:4, textTransform:"uppercase", color:S.gold, marginBottom:16 }}>Our Mission</p>
             <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(40px,5vw,68px)", lineHeight:1, letterSpacing:1, marginBottom:24 }}>BUILT BY PLAYERS,<br /><span style={{ color:S.gold }}>FOR PLAYERS.</span></h2>
-            <p style={{ fontSize:16, fontWeight:300, color:S.light, lineHeight:1.8, marginBottom:32 }}>Our founding team has lived the international football experience — the language barriers, the contract confusion, the agent fees. We built TopArk to eliminate all of it. Athletes connect directly with teams. Transparent. Fast. Athlete-first.</p>
+            <p style={{ fontSize:16, fontWeight:300, color:S.light, lineHeight:1.8, marginBottom:32 }}>Noah and his team have lived the international football experience — the language barriers, the contract confusion, the agent fees. TopArk was built to eliminate all of it. Athletes connect directly with teams. Transparent. Fast. Athlete-first.</p>
             <Link href="/signup" style={{ background:S.gold, color:S.black, fontSize:12, fontWeight:700, letterSpacing:2, textTransform:"uppercase", padding:"14px 28px", textDecoration:"none" }}>Start Your Journey</Link>
           </div>
           <div style={{ display:"flex", flexDirection:"column", gap:20 }}>
@@ -148,8 +148,8 @@ export default function Home() {
       <section style={{ background:S.black, borderTop:`1px solid ${S.border}`, padding:"100px 48px" }}>
         <div style={{ maxWidth:1200, margin:"0 auto" }}>
           <p style={{ fontFamily:"'Space Mono',monospace", fontSize:10, letterSpacing:4, textTransform:"uppercase", color:S.gold, marginBottom:16 }}>Leadership</p>
-          <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,4vw,56px)", letterSpacing:1, marginBottom:16 }}>FOUNDED BY <span style={{ color:S.gold }}>PLAYERS</span></h2>
-          <p style={{ fontSize:15, color:S.gray, marginBottom:56, maxWidth:600, lineHeight:1.7 }}>A combined 20+ years of international professional football experience. We didn't just watch the game — we lived it on 4 continents.</p>
+          <h2 style={{ fontFamily:"'Bebas Neue',sans-serif", fontSize:"clamp(36px,4vw,56px)", letterSpacing:1, marginBottom:16 }}>THE TEAM <span style={{ color:S.gold }}>BEHIND IT</span></h2>
+          <p style={{ fontSize:15, color:S.gray, marginBottom:56, maxWidth:600, lineHeight:1.7 }}>Founded by Noah Whittle and backed by a leadership team with a combined 20+ years of international professional football. They didn't just watch the game — they lived it on 4 continents.</p>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:2, background:S.border }}>
             {founders.map(f=>(
               <div key={f.initials} style={{ background:S.charcoal, padding:"40px 32px", display:"flex", flexDirection:"column", gap:16 }}>
