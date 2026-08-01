@@ -1,0 +1,31 @@
+.page { min-height: 100vh; display: flex; flex-direction: column; }
+
+.nav { padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.navLogo { font-family: var(--font-display); font-size: 28px; letter-spacing: 3px; color: var(--gold); text-decoration: none; }
+.navBack { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.navBack:hover { color: var(--gold); }
+
+.wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px 80px; }
+.card { width: 100%; max-width: 420px; }
+
+.eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.headline { font-family: var(--font-display); font-size: 44px; letter-spacing: 2px; line-height: 1; margin-bottom: 12px; }
+.accent { color: var(--gold); }
+.sub { font-size: 14px; color: var(--gray); line-height: 1.6; margin-bottom: 32px; }
+
+.formGroup { margin-bottom: 20px; }
+.formLabel { display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+.formInput { width: 100%; background: var(--panel); border: 1px solid var(--border); color: var(--white); font-family: var(--font-body); font-size: 14px; padding: 12px 16px; outline: none; transition: border-color 0.2s; }
+.formInput:focus { border-color: var(--gold); }
+.formInput::placeholder { color: var(--gray); }
+
+.btnPrimary { background: var(--gold); color: var(--black); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 16px 36px; border: none; cursor: pointer; transition: background 0.2s; width: 100%; }
+.btnPrimary:hover { background: var(--gold-dim); }
+.btnPrimary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.errorMsg { font-size: 12px; color: var(--error); margin-top: 8px; margin-bottom: 8px; }
+
+.footerNote { margin-top: 24px; font-size: 13px; color: var(--gray); text-align: center; }
+.footerNote a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); }
+
+.footer { padding: 24px 48px; border-top: 1px solid var(--border); text-align: center; font-size: 11px; color: var(--gray); }

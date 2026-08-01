@@ -1,0 +1,294 @@
+.body { background: var(--black); color: var(--white); font-family: var(--font-body); display: flex; min-height: 100vh; }
+
+/* SIDEBAR */
+.sidebar { width: 220px; flex-shrink: 0; background: var(--charcoal); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
+.sidebarLogo { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+.sidebarLogoImg { height: 56px; width: auto; display: block; }
+.sidebarTier { margin: 16px 16px 16px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 10px 14px; }
+.tierLabel { font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); }
+.tierName { font-family: var(--font-display); font-size: 16px; color: var(--gold); letter-spacing: 1px; margin-top: 2px; }
+.sidebarNav { flex: 1; padding: 8px 0; overflow-y: auto; }
+.navSection { padding: 16px 16px 8px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); }
+.navItem { display: flex; align-items: center; gap: 10px; padding: 10px 20px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--light); transition: background 0.15s, color 0.15s; border-left: 2px solid transparent; text-decoration: none; }
+.navItem:hover { background: var(--panel); color: var(--white); }
+.navItemActive { background: var(--panel); color: var(--gold); border-left-color: var(--gold); }
+.navIcon { font-size: 16px; width: 20px; text-align: center; }
+.navBadge { margin-left: auto; background: var(--error); color: white; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
+.sidebarBottom { padding: 16px; border-top: 1px solid var(--border); }
+.sidebarUser { display: flex; align-items: center; gap: 10px; }
+.userAvatar { width: 36px; height: 36px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 14px; color: var(--black); flex-shrink: 0; }
+.userName { font-size: 13px; font-weight: 600; }
+.userPlan { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; color: var(--gold); text-transform: uppercase; background: none; border: none; cursor: pointer; padding: 0; text-align: left; }
+
+/* MAIN */
+.main { margin-left: 220px; flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+.topbar { background: var(--charcoal); border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+.topbarTitle { font-family: var(--font-display); font-size: 22px; letter-spacing: 2px; }
+.topbarRight { display: flex; align-items: center; gap: 16px; }
+.topbarBtn { background: var(--gold); color: var(--black); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 20px; border: none; cursor: pointer; }
+.topbarBtn:hover { background: var(--gold-dim); }
+.topbarNotif { width: 36px; height: 36px; background: var(--panel); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; position: relative; }
+.notifDot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; background: var(--error); border-radius: 50%; }
+
+.content { flex: 1; padding: 32px; }
+
+/* CARDS */
+.card { background: var(--charcoal); border: 1px solid var(--border); padding: 24px; }
+.cardTitle { font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; margin-bottom: 4px; }
+.cardSub { font-size: 12px; color: var(--gray); }
+.eyebrow { font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+
+/* GRID LAYOUTS */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+/* STAT CARDS */
+.statCard { background: var(--charcoal); border: 1px solid var(--border); padding: 20px 24px; }
+.statNum { font-family: var(--font-display); font-size: 40px; color: var(--gold); line-height: 1; margin: 8px 0 4px; }
+.statLabel { font-size: 12px; color: var(--gray); }
+.statChange { font-size: 11px; color: var(--success); margin-top: 4px; }
+
+/* MESSAGES */
+.msgLimitBar { margin: 16px 0; }
+.msgLimitLabel { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray); margin-bottom: 6px; }
+.msgLimitTrack { background: var(--border); height: 4px; border-radius: 2px; }
+.msgLimitFill { background: var(--gold); height: 4px; border-radius: 2px; transition: width 0.4s; }
+.msgItem { display: flex; align-items: flex-start; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.msgItem:last-child { border-bottom: none; }
+.msgAvatar { width: 40px; height: 40px; background: var(--panel); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.msgInfo { flex: 1; min-width: 0; }
+.msgFrom { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+.msgUnread .msgFrom { color: var(--gold); }
+.msgPreview { font-size: 12px; color: var(--gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.msgTime { font-family: var(--font-mono); font-size: 10px; color: var(--gray); flex-shrink: 0; }
+.msgUnreadDot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+
+/* LOCKED OVERLAY */
+.lockedFeature { position: relative; }
+.lockedOverlay { position: absolute; inset: 0; background: rgba(10,10,10,0.85); backdrop-filter: blur(3px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; z-index: 10; text-align: center; padding: 24px; }
+.lockedIcon { font-size: 32px; }
+.lockedTitle { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; }
+.lockedSub { font-size: 12px; color: var(--gray); text-align: center; max-width: 240px; }
+.upgradeBtn { background: var(--gold); color: var(--black); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 24px; border: none; cursor: pointer; margin-top: 4px; }
+
+/* CALENDAR */
+.calendarWrap { background: var(--charcoal); border: 1px solid var(--border); }
+.calHeader { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid var(--border); }
+.calMonth { font-family: var(--font-display); font-size: 24px; letter-spacing: 2px; }
+.calNav { display: flex; gap: 8px; }
+.calNavBtn { background: var(--panel); border: 1px solid var(--border); color: var(--white); width: 32px; height: 32px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; }
+.calNavBtn:hover { border-color: var(--gold); }
+.calGrid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.calDayName { text-align: center; padding: 12px 4px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; color: var(--gray); text-transform: uppercase; border-bottom: 1px solid var(--border); }
+.calDay { padding: 10px 6px; min-height: 72px; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; position: relative; }
+.calDay:nth-child(7n) { border-right: none; }
+.calDay:hover { background: var(--panel); }
+.calDayOtherMonth { opacity: 0.25; }
+.calDayNum { font-size: 12px; font-weight: 600; margin-bottom: 4px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+.calDayTodayNum { background: var(--gold); color: var(--black); width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-weight: 700; border-radius: 2px; }
+.calEvent { font-size: 10px; padding: 2px 5px; margin-bottom: 2px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.calEventInterview { background: rgba(245,196,0,0.2); color: var(--gold); border-left: 2px solid var(--gold); }
+.calEventMeeting { background: rgba(34,197,94,0.15); color: var(--success); border-left: 2px solid var(--success); }
+.calEventCombine { background: rgba(239,68,68,0.15); color: var(--error); border-left: 2px solid var(--error); }
+
+/* APPOINTMENTS */
+.apptList { display: flex; flex-direction: column; gap: 12px; }
+.apptItem { background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 14px 18px; display: flex; align-items: center; gap: 16px; }
+.apptItemMeeting { border-left-color: var(--success); }
+.apptItemCombine { border-left-color: var(--error); }
+.apptDate { text-align: center; min-width: 48px; }
+.apptDateDay { font-family: var(--font-display); font-size: 28px; color: var(--gold); line-height: 1; }
+.apptItemMeeting .apptDateDay { color: var(--success); }
+.apptItemCombine .apptDateDay { color: var(--error); }
+.apptDateMonth { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); }
+.apptDivider { width: 1px; height: 40px; background: var(--border); }
+.apptInfo { flex: 1; }
+.apptTitle { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.apptDetail { font-size: 12px; color: var(--gray); }
+.apptTime { font-family: var(--font-mono); font-size: 11px; color: var(--gold); }
+.apptActions { display: flex; gap: 8px; }
+.apptBtn { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border: 1px solid var(--border); background: none; color: var(--light); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+.apptBtn:hover { border-color: var(--gold); color: var(--gold); }
+.apptBtnConfirm { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+/* COMMUNITY CHAT */
+.communityWrap { display: grid; grid-template-columns: 220px 1fr; gap: 0; height: calc(100vh - 220px); min-height: 500px; border: 1px solid var(--border); }
+.roomList { background: var(--charcoal); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
+.roomHeader { padding: 16px; border-bottom: 1px solid var(--border); font-family: var(--font-display); font-size: 16px; letter-spacing: 1px; }
+.roomSection { padding: 12px 12px 6px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); }
+.roomItem { display: flex; align-items: center; gap: 8px; padding: 9px 16px; cursor: pointer; font-size: 13px; color: var(--light); transition: background 0.15s; border-left: 2px solid transparent; }
+.roomItem:hover { background: var(--panel); }
+.roomItemActive { background: var(--panel); color: var(--gold); border-left-color: var(--gold); }
+.roomBadge { margin-left: auto; background: var(--gold); color: var(--black); font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
+.roomHash { color: var(--gray); font-size: 14px; }
+.chatArea { display: flex; flex-direction: column; background: var(--black); min-width: 0; }
+.chatAreaHeader { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.chatAreaTitle { font-family: var(--font-display); font-size: 18px; letter-spacing: 1px; }
+.chatAreaMeta { font-size: 12px; color: var(--gray); }
+.chatAreaOnline { font-family: var(--font-mono); font-size: 10px; color: var(--success); display: flex; align-items: center; gap: 4px; }
+.onlineDot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+.chatMessages { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.chatMsg { display: flex; gap: 12px; }
+.chatMsgAvatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 13px; flex-shrink: 0; }
+.chatMsgBody { flex: 1; min-width: 0; }
+.chatMsgHeader { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; flex-wrap: wrap; }
+.chatMsgName { font-size: 13px; font-weight: 700; }
+.chatMsgTime { font-family: var(--font-mono); font-size: 10px; color: var(--gray); }
+.chatMsgRole { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 1px 6px; border-radius: 2px; }
+.roleElite { background: rgba(245,196,0,0.15); color: var(--gold); }
+.rolePro { background: rgba(245,196,0,0.3); color: var(--gold); border: 1px solid var(--gold); }
+.chatMsgText { font-size: 13px; color: var(--light); line-height: 1.6; }
+.chatMsgMine .chatMsgName { color: var(--gold); }
+.chatInputArea { padding: 16px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
+.communityInput { flex: 1; background: var(--panel); border: 1px solid var(--border); color: var(--white); font-family: var(--font-body); font-size: 13px; padding: 11px 16px; outline: none; transition: border-color 0.2s; }
+.communityInput:focus { border-color: var(--gold); }
+.sendBtn { background: var(--gold); border: none; cursor: pointer; padding: 11px 20px; font-size: 13px; font-weight: 700; color: var(--black); letter-spacing: 1px; text-transform: uppercase; transition: background 0.2s; white-space: nowrap; }
+.sendBtn:hover { background: var(--gold-dim); }
+
+/* MEMBERSHIP PAGE */
+.planGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); margin-top: 24px; }
+.planCard { background: var(--charcoal); padding: 36px 28px; display: flex; flex-direction: column; }
+.planCardCurrent { border-top: 3px solid var(--gold); }
+.planTag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--gold); color: var(--black); padding: 3px 10px; display: inline-block; margin-bottom: 16px; width: fit-content; font-weight: 700; }
+.planTagCurrent { background: var(--success); }
+.planName2 { font-family: var(--font-display); font-size: 28px; letter-spacing: 2px; margin-bottom: 6px; }
+.planPrice2 { font-family: var(--font-display); font-size: 44px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+.planPeriod { font-size: 12px; color: var(--gray); margin-bottom: 16px; }
+.planFeatures2 { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
+.planFeatures2 li { font-size: 13px; color: var(--light); display: flex; gap: 8px; align-items: flex-start; line-height: 1.5; }
+.planFeatures2 li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+.planFeatureNo { color: var(--gray) !important; }
+.planFeatureNo::before { content: '✕' !important; color: var(--border) !important; }
+.planBtn { width: 100%; padding: 13px; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; border: 1px solid var(--border); background: none; color: var(--white); transition: all 0.2s; margin-top: auto; }
+.planBtn:hover { border-color: var(--gold); color: var(--gold); }
+.planBtn:disabled { cursor: not-allowed; opacity: 0.7; }
+.planBtnGold { background: var(--gold); color: var(--black); border-color: var(--gold); }
+.planBtnCurrent { background: var(--success); color: var(--black); border-color: var(--success); cursor: default; }
+
+/* PROFILE FORM */
+.formGroup { margin-bottom: 16px; }
+.formLabel { display: block; font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+.formInput, .formSelect, .formTextarea { width: 100%; background: var(--panel); border: 1px solid var(--border); color: var(--white); font-family: var(--font-body); font-size: 13px; padding: 10px 14px; outline: none; transition: border-color 0.2s; appearance: none; }
+.formInput:focus, .formSelect:focus, .formTextarea:focus { border-color: var(--gold); }
+.formTextarea { resize: vertical; min-height: 90px; }
+.btnGold { background: var(--gold); color: var(--black); font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 12px 28px; border: none; cursor: pointer; }
+.btnGold:hover { background: var(--gold-dim); }
+.btnGold:disabled { opacity: 0.5; cursor: not-allowed; }
+.btnOutline { background: none; color: var(--light); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 12px 28px; border: 1px solid var(--border); cursor: pointer; }
+.btnOutline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* MODAL */
+.modalBg { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 500; display: flex; align-items: center; justify-content: center; }
+.modal { background: var(--charcoal); border: 1px solid var(--border); padding: 36px; width: 480px; max-width: 95vw; position: relative; }
+.modalTitle { font-family: var(--font-display); font-size: 24px; letter-spacing: 1px; margin-bottom: 20px; color: var(--gold); }
+.modalClose { position: absolute; top: 16px; right: 16px; background: none; border: none; color: var(--gray); cursor: pointer; font-size: 20px; }
+.modalActions { display: flex; gap: 12px; margin-top: 24px; }
+
+/* WORLD CLOCK */
+.clockGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); }
+.clockCard { background: var(--charcoal); padding: 28px 24px; text-align: center; transition: background 0.3s; position: relative; }
+.clockCard:hover { background: var(--panel); }
+.clockCardLocal { border-top: 3px solid var(--gold); }
+.clockFlag { font-size: 32px; margin-bottom: 8px; }
+.clockCity { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; margin-bottom: 2px; }
+.clockCountry { font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 16px; }
+.clockTime { font-family: var(--font-display); font-size: 44px; color: var(--gold); line-height: 1; letter-spacing: 2px; }
+.clockDate { font-size: 12px; color: var(--gray); margin-top: 8px; }
+.clockDiff { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; margin-top: 12px; padding: 4px 10px; border: 1px solid var(--border); display: inline-block; }
+.clockDiffAhead { color: var(--success); border-color: rgba(34,197,94,0.3); }
+.clockDiffBehind { color: var(--error); border-color: rgba(239,68,68,0.3); }
+.clockDiffSame { color: var(--gold); border-color: rgba(245,196,0,0.3); }
+.clockLocalTag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; background: var(--gold); color: var(--black); padding: 2px 8px; font-weight: 700; display: inline-block; margin-bottom: 12px; }
+
+/* AI CHAT WIDGET */
+.aiChatTrigger { position: fixed; bottom: 32px; right: 32px; z-index: 300; width: 56px; height: 56px; background: var(--gold); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 24px rgba(245,196,0,0.35); transition: transform 0.2s, background 0.2s; }
+.aiChatTrigger:hover { transform: scale(1.08); background: var(--gold-dim); }
+.aiChatBadge { position: absolute; top: -4px; right: -4px; width: 16px; height: 16px; background: var(--error); border-radius: 50%; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; color: white; }
+.aiChatWindow { position: fixed; bottom: 100px; right: 32px; z-index: 300; width: 370px; height: 520px; background: var(--charcoal); border: 1px solid var(--border); display: flex; flex-direction: column; box-shadow: 0 8px 48px rgba(0,0,0,0.6); transform: translateY(20px) scale(0.96); opacity: 0; pointer-events: none; transition: transform 0.25s ease, opacity 0.25s ease; }
+.aiChatWindowOpen { transform: translateY(0) scale(1); opacity: 1; pointer-events: all; }
+.aiChatHeader { background: var(--gold); padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
+.aiChatHeaderLeft { display: flex; align-items: center; gap: 10px; }
+.aiChatAvatar { width: 34px; height: 34px; background: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 13px; letter-spacing: 1px; color: var(--gold); }
+.aiChatHeaderName { font-family: var(--font-display); font-size: 15px; letter-spacing: 1px; color: var(--black); }
+.aiChatHeaderStatus { font-size: 10px; color: rgba(0,0,0,0.6); display: flex; align-items: center; gap: 4px; }
+.aiChatClose { background: none; border: none; cursor: pointer; font-size: 18px; color: var(--black); opacity: 0.6; transition: opacity 0.2s; line-height: 1; }
+.aiChatClose:hover { opacity: 1; }
+.aiChatLabel { font-family: var(--font-mono); font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); text-align: center; padding: 6px; opacity: 0.6; border-bottom: 1px solid var(--border); }
+.aiChatBody { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.aiMsg { max-width: 82%; display: flex; flex-direction: column; gap: 4px; }
+.aiMsgThem { align-self: flex-start; }
+.aiMsgMe { align-self: flex-end; }
+.aiMsgBubble { padding: 10px 14px; font-size: 13px; line-height: 1.55; }
+.aiMsgThem .aiMsgBubble { background: var(--panel); border: 1px solid var(--border); color: var(--light); border-radius: 0 8px 8px 8px; }
+.aiMsgMe .aiMsgBubble { background: var(--gold); color: var(--black); font-weight: 500; border-radius: 8px 8px 0 8px; }
+.aiMsgTime { font-size: 10px; color: var(--gray); font-family: var(--font-mono); }
+.aiMsgMe .aiMsgTime { text-align: right; }
+.aiTyping { display: none; align-self: flex-start; }
+.aiTypingShow { display: flex; }
+.aiTypingBubble { background: var(--panel); border: 1px solid var(--border); padding: 10px 16px; border-radius: 0 8px 8px 8px; display: flex; gap: 4px; align-items: center; }
+.aiTypingDot { width: 6px; height: 6px; background: var(--gray); border-radius: 50%; animation: aiTypingBounce 1.2s infinite; }
+.aiTypingDot:nth-child(2) { animation-delay: 0.2s; }
+.aiTypingDot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes aiTypingBounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+.aiChatFooter { border-top: 1px solid var(--border); padding: 12px 16px; display: flex; gap: 10px; align-items: center; }
+.aiChatInput { flex: 1; background: var(--panel); border: 1px solid var(--border); color: var(--white); font-family: var(--font-body); font-size: 13px; padding: 10px 14px; outline: none; transition: border-color 0.2s; }
+.aiChatInput:focus { border-color: var(--gold); }
+.aiChatInput:disabled { opacity: 0.5; }
+.aiChatSend { background: var(--gold); border: none; cursor: pointer; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 16px; transition: background 0.2s; flex-shrink: 0; }
+.aiChatSend:hover { background: var(--gold-dim); }
+.aiChatSend:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* SEARCH ATHLETES (team dashboard) */
+.searchBar { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+.searchBarInput { flex: 1; min-width: 200px; }
+.searchBarSelect { width: 160px; flex-shrink: 0; }
+.filterTags { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.filterTag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; padding: 6px 14px; border: 1px solid var(--border); color: var(--gray); cursor: pointer; transition: all 0.15s; background: none; }
+.filterTag:hover, .filterTagActive { border-color: var(--gold); color: var(--gold); background: rgba(245,196,0,0.08); }
+
+/* PLAYER CARDS */
+.playerGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+.playerCard { background: var(--charcoal); padding: 24px; display: flex; flex-direction: column; gap: 12px; transition: background 0.2s; position: relative; }
+.playerCard:hover { background: var(--panel); }
+.playerTop { display: flex; align-items: center; gap: 14px; }
+.playerAvatar { width: 52px; height: 52px; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 20px; color: var(--black); flex-shrink: 0; }
+.playerName { font-family: var(--font-display); font-size: 20px; letter-spacing: 1px; }
+.playerPos { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.playerVerified { font-size: 10px; color: var(--success); display: flex; align-items: center; gap: 4px; }
+.playerStats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding-top: 12px; border-top: 1px solid var(--border); }
+.playerStat { text-align: center; }
+.playerStatVal { font-family: var(--font-display); font-size: 18px; color: var(--gold); }
+.playerStatLabel { font-family: var(--font-mono); font-size: 8px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); }
+.playerTags { display: flex; gap: 6px; flex-wrap: wrap; }
+.playerTag { font-size: 10px; padding: 3px 8px; border: 1px solid var(--border); color: var(--gray); }
+.playerActions { display: flex; gap: 8px; margin-top: auto; }
+.playerBtn { flex: 1; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 8px; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.playerBtnMessage { background: var(--gold); color: var(--black); }
+.playerBtnMessage:hover { background: var(--gold-dim); }
+.playerBtnOutline { background: none; color: var(--light); border: 1px solid var(--border); }
+.playerBtnOutline:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ROSTER */
+.rosterTable { width: 100%; border-collapse: collapse; }
+.rosterTable th { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.rosterTable td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
+.rosterTable tr:hover { background: var(--panel); }
+.rosterStatus { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; display: inline-block; }
+.rosterStatusSigned { background: rgba(34,197,94,0.15); color: var(--success); }
+.rosterStatusInterview { background: rgba(245,196,0,0.15); color: var(--gold); }
+.rosterStatusProspect { background: rgba(59,130,246,0.15); color: var(--blue); }
+.rosterStatusDeclined { background: rgba(239,68,68,0.1); color: var(--error); }
+
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .communityWrap { grid-template-columns: 1fr; }
+  .roomList { display: none; }
+  .planGrid { grid-template-columns: 1fr; }
+  .grid4 { grid-template-columns: 1fr 1fr; }
+  .clockGrid { grid-template-columns: 1fr 1fr; }
+  .aiChatWindow { width: calc(100vw - 32px); right: 16px; }
+  .playerGrid { grid-template-columns: 1fr; }
+  .searchBarSelect { width: 100%; }
+}

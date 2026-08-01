@@ -12,6 +12,7 @@
   --gray: #888888;
   --success: #22c55e;
   --error: #ef4444;
+  --blue: #3b82f6;
   --font-display: "Bebas Neue", sans-serif;
   --font-body: "Inter", sans-serif;
   --font-mono: "Space Mono", monospace;
@@ -29,6 +30,7 @@
   --color-gray: var(--gray);
   --color-success: var(--success);
   --color-error: var(--error);
+  --color-blue: var(--blue);
 
   --font-display: var(--font-display);
   --font-body: var(--font-body);

@@ -32,6 +32,7 @@ export default function SignupWizard() {
   const [errTc, setErrTc] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [needsEmailConfirmation, setNeedsEmailConfirmation] = useState(false);
 
   const [athlete, setAthlete] = useState({
     firstName: "",
@@ -110,7 +111,7 @@ export default function SignupWizard() {
     }
 
     const supabase = createClient();
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -138,18 +139,32 @@ export default function SignupWizard() {
       setSubmitError(error.message);
       return;
     }
+    setNeedsEmailConfirmation(!data.session);
     setStep(4);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  const successIcon = accountType === "team" ? "🏟️" : "🏈";
-  const successTitle = accountType === "team" ? "TEAM ACCOUNT CREATED" : "WELCOME TO TOPARK";
-  const successBody =
-    accountType === "team"
+  const successIcon = needsEmailConfirmation ? "📧" : accountType === "team" ? "🏟️" : "🏈";
+  const successTitle = needsEmailConfirmation
+    ? "CHECK YOUR EMAIL"
+    : accountType === "team"
+      ? "TEAM ACCOUNT CREATED"
+      : "WELCOME TO TOPARK";
+  const successBody = needsEmailConfirmation
+    ? "We sent a confirmation link to your email. Verify your address to log in and access your dashboard."
+    : accountType === "team"
       ? "Your team account has been created. Set up your team profile and start browsing verified athletes on the TopArk platform."
       : "Your account has been created. Complete your verification to unlock full platform access and start connecting with teams worldwide.";
-  const successCta = accountType === "team" ? "Go to Team Dashboard" : "Go to My Dashboard";
-  const successHref = accountType === "team" ? "/team-dashboard" : "/dashboard";
+  const successCta = needsEmailConfirmation
+    ? "Go to Log In"
+    : accountType === "team"
+      ? "Go to Team Dashboard"
+      : "Go to My Dashboard";
+  const successHref = needsEmailConfirmation
+    ? "/login"
+    : accountType === "team"
+      ? "/team-dashboard"
+      : "/dashboard";
 
   return (
     <div className={styles.page}>
