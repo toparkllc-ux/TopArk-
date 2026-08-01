@@ -61,7 +61,13 @@ export default async function TeamDashboardLayout({ children }: { children: Reac
         accent="blue"
       />
       <main className={styles.main}>
-        <Topbar titles={PAGE_TITLES} scheduleHref="/team-dashboard/search" scheduleLabel="+ Find Athletes" />
+        <Topbar
+          titles={PAGE_TITLES}
+          scheduleHref="/team-dashboard/search"
+          scheduleLabel="+ Find Athletes"
+          userId={current.user.id}
+          accountType="team"
+        />
         <div className={styles.content}>{children}</div>
       </main>
       <DashboardAIChatWidget />

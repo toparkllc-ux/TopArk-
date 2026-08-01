@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/queries";
 import { cmToFeetInches, kgToLbs } from "@/lib/measurements";
 import styles from "../athletes.module.css";
+import StartConversationButton from "@/components/messaging/StartConversationButton";
+import RequestInterviewButton from "@/components/messaging/RequestInterviewButton";
 
 export async function generateMetadata({
   params,
@@ -32,6 +35,9 @@ export default async function AthleteProfilePage({ params }: { params: Promise<{
 
   const initials = `${athlete.first_name?.[0] ?? ""}${athlete.last_name?.[0] ?? ""}`.toUpperCase() || "TA";
   const fullName = [athlete.first_name, athlete.last_name].filter(Boolean).join(" ") || "TopArk Athlete";
+
+  const current = await getCurrentUser();
+  const viewerTeamId = current?.accountType === "team" ? current.user.id : null;
 
   return (
     <>
@@ -91,20 +97,37 @@ export default async function AthleteProfilePage({ params }: { params: Promise<{
           </div>
         )}
 
-        <div className={styles.ctaPanel}>
-          <div className={styles.ctaText}>
-            Sign in as a verified team or coach to message {athlete.first_name || "this athlete"} directly or
-            request an interview.
+        {viewerTeamId && athlete.id ? (
+          <div className={styles.ctaPanel}>
+            <div className={styles.ctaText}>
+              Reach out to {athlete.first_name || "this athlete"} directly.
+            </div>
+            <div className={styles.ctaActions}>
+              <StartConversationButton athleteId={athlete.id} teamId={viewerTeamId} className={styles.btnPrimary} />
+              <RequestInterviewButton
+                athleteId={athlete.id}
+                teamId={viewerTeamId}
+                athleteName={athlete.first_name || fullName}
+                className={styles.btnSecondary}
+              />
+            </div>
           </div>
-          <div className={styles.ctaActions}>
-            <Link href="/login" className={styles.btnPrimary}>
-              Team Log In
-            </Link>
-            <Link href="/signup" className={styles.btnSecondary}>
-              Partner With TopArk
-            </Link>
+        ) : (
+          <div className={styles.ctaPanel}>
+            <div className={styles.ctaText}>
+              Sign in as a verified team or coach to message {athlete.first_name || "this athlete"} directly or
+              request an interview.
+            </div>
+            <div className={styles.ctaActions}>
+              <Link href="/login" className={styles.btnPrimary}>
+                Team Log In
+              </Link>
+              <Link href="/signup" className={styles.btnSecondary}>
+                Partner With TopArk
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

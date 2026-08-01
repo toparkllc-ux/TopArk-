@@ -1,72 +1,56 @@
+import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/queries";
 import styles from "@/components/dashboard/dashboard.module.css";
+import TeamCalendarClient from "./TeamCalendarClient";
 
-const EVALUATIONS = [
-  { day: "18", month: "Jun", title: "Darius M. — WR Eval", detail: "Video call · Film review + Q&A", time: "2:00 PM", eval: false },
-  { day: "20", month: "Jun", title: "Marcus T. — LB Eval", detail: "Video call · Physical assessment", time: "10:00 AM", eval: true },
-  { day: "25", month: "Jun", title: "Brandon K. — QB Eval", detail: "Video call · Scheme fit discussion", time: "3:00 PM", eval: false },
-  { day: "28", month: "Jun", title: "Georgetown Combine — Live Scouting", detail: "In-person · TopArk International Combine", time: "8:00 AM", eval: true },
-];
+export default async function TeamCalendarPage() {
+  const current = await getCurrentUser();
+  if (!current || current.accountType !== "team") return null;
 
-const ACTIVITY = [
-  { icon: "✅", title: "Jaylen R. signed", detail: "Running Back · Contract confirmed · 2d ago" },
-  { icon: "✅", title: "Chris J. signed", detail: "Safety · Contract confirmed · 5d ago" },
-  { icon: "🎥", title: "New film reviewed", detail: "Andre W. (CB) uploaded combine footage · 1w ago" },
-  { icon: "📋", title: "Roster needs updated", detail: "You added DL and OL to open positions · 1w ago" },
-];
+  const supabase = await createClient();
 
-export default function TeamCalendarPage() {
+  const { data: appointments } = await supabase
+    .from("appointments")
+    .select("*")
+    .eq("owner_id", current.user.id)
+    .order("starts_at", { ascending: true });
+
+  const { data: recentRequests } = await supabase
+    .from("interview_requests")
+    .select("*")
+    .eq("team_id", current.user.id)
+    .neq("status", "pending")
+    .order("updated_at", { ascending: false })
+    .limit(6);
+
+  const athleteIds = [...new Set((recentRequests ?? []).map((r) => r.athlete_id))];
+  const { data: athletes } = athleteIds.length
+    ? await supabase.from("athlete_directory").select("id, first_name, last_name").in("id", athleteIds)
+    : { data: [] };
+  const nameMap = new Map((athletes ?? []).map((a) => [a.id, [a.first_name, a.last_name].filter(Boolean).join(" ") || "Athlete"]));
+
+  const events = (appointments ?? []).map((a) => ({
+    id: a.id,
+    title: a.title,
+    detail: a.detail,
+    kind: a.kind as "interview" | "meeting" | "combine",
+    startsAt: a.starts_at,
+  }));
+
+  const activity = (recentRequests ?? []).map((r) => ({
+    id: r.id,
+    icon: r.status === "accepted" ? "✅" : r.status === "declined" ? "🚫" : "📋",
+    title: `${nameMap.get(r.athlete_id) ?? "Athlete"} — interview ${r.status}`,
+    detail: new Date(r.updated_at).toLocaleDateString(),
+  }));
+
   return (
     <>
       <div className={styles.eyebrow}>Schedule</div>
       <div style={{ fontFamily: "var(--font-display)", fontSize: 32, letterSpacing: 1, marginBottom: 24 }}>
         EVALUATION <span style={{ color: "var(--gold)" }}>CALENDAR</span>
       </div>
-      <div className={styles.grid2} style={{ gap: 24, alignItems: "start" }}>
-        <div className={styles.card}>
-          <div className={styles.cardTitle}>UPCOMING EVALUATIONS</div>
-          <div className={styles.apptList} style={{ marginTop: 16 }}>
-            {EVALUATIONS.map((e) => (
-              <div className={styles.apptItem} key={e.title} style={e.eval ? { borderLeftColor: "var(--blue)" } : undefined}>
-                <div className={styles.apptDate}>
-                  <div className={styles.apptDateDay} style={e.eval ? { color: "var(--blue)" } : undefined}>
-                    {e.day}
-                  </div>
-                  <div className={styles.apptDateMonth}>{e.month}</div>
-                </div>
-                <div className={styles.apptDivider} />
-                <div className={styles.apptInfo}>
-                  <div className={styles.apptTitle}>{e.title}</div>
-                  <div className={styles.apptDetail}>{e.detail}</div>
-                </div>
-                <div className={styles.apptTime}>{e.time}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.cardTitle}>RECENT ACTIVITY</div>
-          <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 14 }}>
-            {ACTIVITY.map((a, i) => (
-              <div
-                key={a.title}
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  gap: 12,
-                  paddingBottom: i < ACTIVITY.length - 1 ? 14 : 0,
-                  borderBottom: i < ACTIVITY.length - 1 ? "1px solid var(--border)" : "none",
-                }}
-              >
-                <div style={{ fontSize: 18 }}>{a.icon}</div>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 600 }}>{a.title}</div>
-                  <div style={{ fontSize: 12, color: "var(--gray)" }}>{a.detail}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <TeamCalendarClient initialEvents={events} activity={activity} />
     </>
   );
 }

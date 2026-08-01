@@ -30,11 +30,16 @@ The Supabase project (`zazvoxhgklujjadscdon`) is already live with the schema in
 - [x] Athlete profile creation and editing (`/dashboard/profile`) — real read/write, live completeness %
 - [x] Verification workflow — athletes submit for review (`unverified` → `pending`); admin approval UI is Phase 4
 - [x] Team profile creation and editing (`/team-dashboard/teamprofile`)
-- [x] Athlete dashboard (`/dashboard`) converted from `topark-dashboard.html` — overview, membership (live Stripe checkout + tier), profile, world clock (live), messages/calendar/community are visual conversions with sample data (real-time backend is Phase 3)
-- [x] Team dashboard (`/team-dashboard`) converted from `topark-team-dashboard.html` — overview, **Find Athletes is a real DB-backed search/filter** (position, verified, film available), roster/messages/calendar/interviews are visual conversions with sample data
+- [x] Athlete dashboard (`/dashboard`) converted from `topark-dashboard.html` — overview, membership (live Stripe checkout + tier), profile, world clock (live); messages/calendar/interviews became real in Phase 3, community chat is still a visual conversion with sample data (Phase 4)
+- [x] Team dashboard (`/team-dashboard`) converted from `topark-team-dashboard.html` — overview, **Find Athletes is a real DB-backed search/filter** (position, verified, film available); messages/calendar/interviews became real in Phase 3, roster board is still a visual conversion with sample data
 - [x] Public athlete profile pages (`/athletes/[id]`), reading from a `athlete_directory` view that excludes email and Stripe IDs from public/team access
 
-**Phase 3 — Communication** (not started): real-time messaging, interview requests, working calendar persistence, notifications.
+**Phase 3 — Communication**
+- [x] Real-time messaging (`/dashboard/messages`, `/team-dashboard/messages`) — `conversations`/`messages` tables, Supabase Realtime subscriptions, read receipts
+- [x] Message limits enforced server-side via a Postgres trigger: free-tier athletes can't send at all, paid athletes must be verified, teams get one new message per free-tier athlete per rolling 7 days (marketed to athletes as "up to 4/month")
+- [x] Interview request system — teams request from an athlete's profile (`/athletes/[id]`) or search results; athlete accepts (choosing a time) or declines from `/dashboard/calendar`; team's `/team-dashboard/interviews` shows real request status. Athlete-initiated requests are not implemented — there's no "browse teams" page yet, so only teams can initiate today
+- [x] Calendar (`/dashboard/calendar`, `/team-dashboard/calendar`) — real `appointments` table, manual "+ Add" scheduling modal, accepted interviews auto-create appointments for both sides
+- [x] Notifications — real unread-count bell in the topbar, backed by a `notifications` table populated by triggers on new messages and interview status changes, with Realtime updates
 
 **Phase 4 — Community & Admin** (not started): community chat rooms wired to real messages, admin panel (`topark-admin.html`), verification review queue.
 

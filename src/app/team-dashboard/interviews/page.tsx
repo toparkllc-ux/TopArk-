@@ -1,69 +1,89 @@
+import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/queries";
 import styles from "@/components/dashboard/dashboard.module.css";
 
-const INCOMING = [
-  { initials: "AW", name: "Andre Williams — CB", detail: "5'11\" · 185 · 4.38 · D1 College · Requested Jun 12" },
-  { initials: "TH", name: "Terrance Hill — DL", detail: "6'3\" · 270 · 4.85 · 2yr Pro · Requested Jun 14" },
-];
+const statusColor: Record<string, string> = {
+  pending: "var(--gold)",
+  accepted: "var(--success)",
+  declined: "var(--error)",
+  cancelled: "var(--gray)",
+};
 
-const OUTGOING = [
-  { initials: "DM", name: "Darius Mitchell — WR", status: "Accepted · Interview Jun 18", color: "var(--success)" },
-  { initials: "MT", name: "Marcus Thompson — LB", status: "Accepted · Interview Jun 20", color: "var(--success)" },
-  { initials: "BK", name: "Brandon King — QB", status: "Pending · Sent Jun 15", color: "var(--gold)" },
-];
+export default async function InterviewsPage() {
+  const current = await getCurrentUser();
+  if (!current || current.accountType !== "team") return null;
 
-export default function InterviewsPage() {
+  const supabase = await createClient();
+  const { data: requests } = await supabase
+    .from("interview_requests")
+    .select("*")
+    .eq("team_id", current.user.id)
+    .order("created_at", { ascending: false });
+
+  const athleteIds = [...new Set((requests ?? []).map((r) => r.athlete_id))];
+  const { data: athletes } = athleteIds.length
+    ? await supabase.from("athlete_directory").select("id, first_name, last_name").in("id", athleteIds)
+    : { data: [] };
+  const nameMap = new Map((athletes ?? []).map((a) => [a.id, [a.first_name, a.last_name].filter(Boolean).join(" ") || "Athlete"]));
+
   return (
     <>
       <div className={styles.eyebrow}>Evaluation Pipeline</div>
       <div style={{ fontFamily: "var(--font-display)", fontSize: 32, letterSpacing: 1, marginBottom: 24 }}>
-        INTERVIEW <span style={{ color: "var(--gold)" }}>REQUESTS</span>
+        YOUR INTERVIEW <span style={{ color: "var(--gold)" }}>REQUESTS</span>
       </div>
-      <div className={styles.grid2} style={{ gap: 24 }}>
+
+      {!requests || requests.length === 0 ? (
         <div className={styles.card}>
-          <div className={styles.cardTitle} style={{ color: "var(--gold)", marginBottom: 16 }}>
-            INCOMING REQUESTS
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {INCOMING.map((r) => (
-              <div key={r.name} style={{ background: "var(--panel)", border: "1px solid var(--border)", padding: 16, display: "flex", alignItems: "center", gap: 16 }}>
-                <div className={styles.playerAvatar} style={{ width: 44, height: 44, fontSize: 16 }}>
-                  {r.initials}
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600 }}>{r.name}</div>
-                  <div style={{ fontSize: 12, color: "var(--gray)" }}>{r.detail}</div>
-                </div>
-                <div style={{ display: "flex", gap: 8 }}>
-                  <button className={styles.btnPrimary} style={{ padding: "6px 14px", fontSize: 10 }}>
-                    Accept
-                  </button>
-                  <button className={styles.btnOutline} style={{ padding: "6px 14px", fontSize: 10 }}>
-                    Decline
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div style={{ fontSize: 13, color: "var(--gray)" }}>
+            No interview requests yet. Send one from an athlete&apos;s profile in Find Athletes.
           </div>
         </div>
+      ) : (
         <div className={styles.card}>
-          <div className={styles.cardTitle} style={{ marginBottom: 16 }}>
-            YOUR OUTGOING REQUESTS
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {OUTGOING.map((r) => (
-              <div key={r.name} style={{ background: "var(--panel)", border: "1px solid var(--border)", borderLeft: `3px solid ${r.color}`, padding: 16, display: "flex", alignItems: "center", gap: 16 }}>
+          {requests.map((r, i) => {
+            const name = nameMap.get(r.athlete_id) ?? "Athlete";
+            const initials = name.split(" ").map((s) => s[0]).filter(Boolean).slice(0, 2).join("").toUpperCase() || "TA";
+            return (
+              <div
+                key={r.id}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 16,
+                  padding: "16px 0",
+                  borderBottom: i < requests.length - 1 ? "1px solid var(--border)" : "none",
+                }}
+              >
                 <div className={styles.playerAvatar} style={{ width: 44, height: 44, fontSize: 16 }}>
-                  {r.initials}
+                  {initials}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600 }}>{r.name}</div>
-                  <div style={{ fontSize: 12, color: r.color }}>{r.status}</div>
+                  <div style={{ fontSize: 14, fontWeight: 600 }}>{name}</div>
+                  <div style={{ fontSize: 12, color: "var(--gray)" }}>
+                    {r.scheduled_at
+                      ? `Scheduled ${new Date(r.scheduled_at).toLocaleString()}`
+                      : r.proposed_at
+                        ? `Proposed ${new Date(r.proposed_at).toLocaleString()}`
+                        : `Sent ${new Date(r.created_at).toLocaleDateString()}`}
+                  </div>
                 </div>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: 10,
+                    letterSpacing: 1,
+                    textTransform: "uppercase",
+                    color: statusColor[r.status] ?? "var(--gray)",
+                  }}
+                >
+                  {r.status}
+                </span>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-      </div>
+      )}
     </>
   );
 }

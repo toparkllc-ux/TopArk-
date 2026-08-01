@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getCurrentUser } from "@/lib/supabase/queries";
 import styles from "@/components/dashboard/dashboard.module.css";
 import { cmToFeetInches, kgToLbs } from "@/lib/measurements";
 import SearchFilters from "./SearchFilters";
+import StartConversationButton from "@/components/messaging/StartConversationButton";
 
 export default async function FindAthletesPage({
   searchParams,
@@ -11,6 +13,8 @@ export default async function FindAthletesPage({
 }) {
   const params = await searchParams;
   const supabase = await createClient();
+  const current = await getCurrentUser();
+  const teamId = current?.accountType === "team" ? current.user.id : null;
 
   let query = supabase.from("athlete_directory").select("*").limit(60);
 
@@ -95,10 +99,16 @@ export default async function FindAthletesPage({
                   {athlete.highlight_url && <span className={styles.playerTag}>🎥 Film</span>}
                 </div>
                 <div className={styles.playerActions}>
-                  <Link href={`/athletes/${athlete.id}`} className={`${styles.playerBtn} ${styles.playerBtnMessage}`}>
+                  {teamId && athlete.id ? (
+                    <StartConversationButton
+                      athleteId={athlete.id}
+                      teamId={teamId}
+                      className={`${styles.playerBtn} ${styles.playerBtnMessage}`}
+                    />
+                  ) : null}
+                  <Link href={`/athletes/${athlete.id}`} className={`${styles.playerBtn} ${styles.playerBtnOutline}`}>
                     View Profile
                   </Link>
-                  <button className={`${styles.playerBtn} ${styles.playerBtnOutline}`}>Interview</button>
                 </div>
               </div>
             );

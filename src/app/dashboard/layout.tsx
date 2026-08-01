@@ -67,7 +67,12 @@ export default async function DashboardLayout({ children }: { children: React.Re
         userPlan={`${profile.membership_tier === "free" ? "Free" : profile.membership_tier === "elite" ? "Elite" : "Pro Ark"} Member`}
       />
       <main className={styles.main}>
-        <Topbar titles={PAGE_TITLES} scheduleHref="/dashboard/calendar" />
+        <Topbar
+          titles={PAGE_TITLES}
+          scheduleHref="/dashboard/calendar"
+          userId={current.user.id}
+          accountType="athlete"
+        />
         <div className={styles.content}>{children}</div>
       </main>
       <DashboardAIChatWidget />
