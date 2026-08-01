@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #f5c400;
+  --gold-dim: #c49a00;
+  --black: #0a0a0a;
+  --charcoal: #141414;
+  --panel: #1a1a1a;
+  --border: #2a2a2a;
+  --white: #ffffff;
+  --light: #cccccc;
+  --gray: #888888;
+  --success: #22c55e;
+  --error: #ef4444;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+@theme inline {
+  --color-gold: var(--gold);
+  --color-gold-dim: var(--gold-dim);
+  --color-black: var(--black);
+  --color-charcoal: var(--charcoal);
+  --color-panel: var(--panel);
+  --color-border: var(--border);
+  --color-white: var(--white);
+  --color-light: var(--light);
+  --color-gray: var(--gray);
+  --color-success: var(--success);
+  --color-error: var(--error);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
