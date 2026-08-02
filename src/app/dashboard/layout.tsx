@@ -16,7 +16,10 @@ const NAV_GROUPS: NavGroup[] = [
   },
   {
     section: "Community",
-    items: [{ href: "/dashboard/community", icon: "🌐", label: "Community Chat" }],
+    items: [
+      { href: "/dashboard/community", icon: "🌐", label: "Community Chat" },
+      { href: "/news", icon: "📰", label: "News" },
+    ],
   },
   {
     section: "Profile",

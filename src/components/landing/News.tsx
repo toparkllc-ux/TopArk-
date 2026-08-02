@@ -1,45 +1,12 @@
+import Link from "next/link";
 import styles from "./landing.module.css";
+import { getPublishedNewsPosts, formatNewsMeta } from "@/lib/news/getNewsPosts";
 
-const articles = [
-  {
-    tag: "🏈 Featured",
-    title: "TopArk Reaches 108 Player Signings Across 10+ Countries",
-    excerpt:
-      "What started as a mission to create pathways for overlooked athletes has turned into a global movement. Founder Noah Whittle reflects on the milestone and what comes next for the platform.",
-    meta: "June 2026 · TopArk HQ",
-    featured: true,
-  },
-  {
-    tag: "🌍 International",
-    title: "New Partner Teams Added in Germany & Sweden",
-    excerpt:
-      "TopArk expands its European network with 6 new partner teams ahead of the fall season.",
-    meta: "May 2026",
-  },
-  {
-    tag: "🎯 Combine",
-    title: "Georgetown International Combine — Registration Now Open",
-    excerpt:
-      "Athletes from across the country are invited to the next TopArk non-contact combine in Georgetown, TX.",
-    meta: "April 2026",
-  },
-  {
-    tag: "📱 Platform",
-    title: "TopArk App in Development — Beta Sign-Ups Open",
-    excerpt:
-      "The full TopArk platform is coming — athlete profiles, team dashboards, instant messaging, and more.",
-    meta: "March 2026",
-  },
-  {
-    tag: "🥊 Expansion",
-    title: "TopArk Promotions — Combat Sports Division Announced",
-    excerpt:
-      "TopArk expands beyond football with a new combat sports promotion arm targeting boxing and MMA athletes.",
-    meta: "February 2026",
-  },
-];
+export default async function News() {
+  const posts = await getPublishedNewsPosts(5);
 
-export default function News() {
+  if (posts.length === 0) return null;
+
   return (
     <section className={`${styles.section} ${styles.news}`} id="news">
       <div className={styles.newsInner}>
@@ -50,21 +17,22 @@ export default function News() {
               TOPARK <span className={styles.accent}>NEWS.</span>
             </h2>
           </div>
-          <a href="#" className={styles.newsLink}>
+          <Link href="/news" className={styles.newsLink}>
             View All Stories →
-          </a>
+          </Link>
         </div>
         <div className={styles.newsGrid}>
-          {articles.map((article) => (
-            <div
-              className={`${styles.newsCard} ${article.featured ? styles.newsCardFeatured : ""}`}
-              key={article.title}
+          {posts.map((post, i) => (
+            <Link
+              className={`${styles.newsCard} ${i === 0 ? styles.newsCardFeatured : ""}`}
+              href={`/news/${post.slug}`}
+              key={post.id}
             >
-              <div className={styles.newsTag}>{article.tag}</div>
-              <div className={styles.newsTitle}>{article.title}</div>
-              <div className={styles.newsExcerpt}>{article.excerpt}</div>
-              <div className={styles.newsMeta}>{article.meta}</div>
-            </div>
+              <div className={styles.newsTag}>{post.tag}</div>
+              <div className={styles.newsTitle}>{post.title}</div>
+              <div className={styles.newsExcerpt}>{post.excerpt}</div>
+              <div className={styles.newsMeta}>{formatNewsMeta(post)}</div>
+            </Link>
           ))}
         </div>
       </div>

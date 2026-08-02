@@ -377,6 +377,59 @@ export type Database = {
           },
         ]
       }
+      news_posts: {
+        Row: {
+          author_id: string | null
+          body: string
+          created_at: string
+          excerpt: string
+          id: string
+          published_at: string | null
+          slug: string
+          status: string
+          tag: string
+          title: string
+          updated_at: string
+          views: number
+        }
+        Insert: {
+          author_id?: string | null
+          body: string
+          created_at?: string
+          excerpt: string
+          id?: string
+          published_at?: string | null
+          slug: string
+          status?: string
+          tag?: string
+          title: string
+          updated_at?: string
+          views?: number
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          created_at?: string
+          excerpt?: string
+          id?: string
+          published_at?: string | null
+          slug?: string
+          status?: string
+          tag?: string
+          title?: string
+          updated_at?: string
+          views?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "news_posts_author_id_fkey"
+            columns: ["author_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       notifications: {
         Row: {
           body: string | null
@@ -547,6 +600,10 @@ export type Database = {
       claim_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      increment_news_post_views: {
+        Args: { post_slug: string }
+        Returns: undefined
       }
       is_admin: {
         Args: { uid: string }

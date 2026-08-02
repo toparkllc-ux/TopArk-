@@ -21,6 +21,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { href: "/team-dashboard/interviews", icon: "🎤", label: "Interviews" },
       { href: "/team-dashboard/worldclock", icon: "🌍", label: "World Clock" },
+      { href: "/news", icon: "📰", label: "News" },
     ],
   },
   {
