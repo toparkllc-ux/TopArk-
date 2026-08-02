@@ -138,6 +138,7 @@
 .chatMsgRole { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 1px 6px; border-radius: 2px; }
 .roleElite { background: rgba(245,196,0,0.15); color: var(--gold); }
 .rolePro { background: rgba(245,196,0,0.3); color: var(--gold); border: 1px solid var(--gold); }
+.roleFounder { background: rgba(220,38,38,0.15); color: #ef4444; border: 1px solid #ef4444; }
 .chatMsgText { font-size: 13px; color: var(--light); line-height: 1.6; }
 .chatMsgMine .chatMsgName { color: var(--gold); }
 .chatInputArea { padding: 16px 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; align-items: center; }
@@ -291,4 +292,16 @@
   .aiChatWindow { width: calc(100vw - 32px); right: 16px; }
   .playerGrid { grid-template-columns: 1fr; }
   .searchBarSelect { width: 100%; }
+}
+
+/* ADMIN */
+.grid5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.adminBadge { margin: 0 16px 16px; background: var(--panel); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+.adminBadgeText { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); }
+.topbarLive { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--success); display: flex; align-items: center; gap: 6px; }
+.liveDot { width: 7px; height: 7px; background: var(--success); border-radius: 50%; }
+.badgeGold { margin-left: auto; background: var(--gold); color: var(--black); font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
+
+@media (max-width: 1100px) {
+  .grid5 { grid-template-columns: repeat(2, 1fr); }
 }
