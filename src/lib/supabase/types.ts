@@ -235,6 +235,94 @@ export type Database = {
         }
         Relationships: []
       }
+      combine_events: {
+        Row: {
+          capacity: number | null
+          created_at: string
+          description: string
+          event_date: string
+          id: string
+          location: string
+          registration_deadline: string | null
+          slug: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          capacity?: number | null
+          created_at?: string
+          description: string
+          event_date: string
+          id?: string
+          location: string
+          registration_deadline?: string | null
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          capacity?: number | null
+          created_at?: string
+          description?: string
+          event_date?: string
+          id?: string
+          location?: string
+          registration_deadline?: string | null
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      combine_registrations: {
+        Row: {
+          appointment_id: string | null
+          athlete_id: string
+          created_at: string
+          event_id: string
+          id: string
+        }
+        Insert: {
+          appointment_id?: string | null
+          athlete_id: string
+          created_at?: string
+          event_id: string
+          id?: string
+        }
+        Update: {
+          appointment_id?: string | null
+          athlete_id?: string
+          created_at?: string
+          event_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "combine_registrations_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "combine_registrations_athlete_id_fkey"
+            columns: ["athlete_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "combine_registrations_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "combine_events"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       conversations: {
         Row: {
           athlete_id: string
@@ -591,11 +679,30 @@ export type Database = {
           },
         ]
       }
+      combine_event_public: {
+        Row: {
+          capacity: number | null
+          description: string | null
+          event_date: string | null
+          id: string | null
+          location: string | null
+          registered_count: number | null
+          registration_deadline: string | null
+          slug: string | null
+          status: string | null
+          title: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       can_use_community_chat: {
         Args: { uid: string }
         Returns: boolean
+      }
+      cancel_combine_registration: {
+        Args: { p_event_id: string }
+        Returns: undefined
       }
       claim_admin: {
         Args: Record<PropertyKey, never>
@@ -608,6 +715,10 @@ export type Database = {
       is_admin: {
         Args: { uid: string }
         Returns: boolean
+      }
+      register_for_combine: {
+        Args: { p_event_id: string }
+        Returns: Database["public"]["Tables"]["combine_registrations"]["Row"]
       }
     }
     Enums: {

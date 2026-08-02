@@ -18,6 +18,7 @@ const NAV_GROUPS: NavGroup[] = [
     section: "Community",
     items: [
       { href: "/dashboard/community", icon: "🌐", label: "Community Chat" },
+      { href: "/combines", icon: "🎯", label: "Combines" },
       { href: "/news", icon: "📰", label: "News" },
     ],
   },

@@ -1,0 +1,47 @@
+.nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; border-bottom: 1px solid var(--border); }
+.navLogo { font-family: var(--font-display); font-size: 28px; letter-spacing: 3px; color: var(--gold); text-decoration: none; }
+.navBack { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+.navBack:hover { color: var(--gold); }
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px 96px; }
+.headline { font-family: var(--font-display); font-size: clamp(36px, 4vw, 56px); letter-spacing: 1px; margin-bottom: 8px; }
+.eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.accent { color: var(--gold); }
+
+.list { display: flex; flex-direction: column; gap: 2px; background: var(--border); margin-top: 40px; }
+.card { background: var(--black); padding: 28px 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; text-decoration: none; transition: background 0.3s; }
+.card:hover { background: var(--panel); }
+.cardInfo { flex: 1; min-width: 220px; }
+.cardTag { font-family: var(--font-mono); font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.cardTitle { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.5px; color: var(--white); }
+.cardMeta { font-family: var(--font-mono); font-size: 11px; color: var(--gray); letter-spacing: 0.5px; margin-top: 8px; }
+.cardSpots { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--success); white-space: nowrap; }
+.cardSpotsFull { color: var(--error); }
+
+.empty { text-align: center; padding: 96px 24px; color: var(--gray); font-size: 14px; }
+
+.detail { max-width: 720px; margin: 0 auto; padding: 56px 24px 96px; }
+.detailTag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.detailTitle { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); letter-spacing: 0.5px; line-height: 1.1; margin-bottom: 20px; }
+.detailMeta { display: flex; flex-direction: column; gap: 8px; font-family: var(--font-mono); font-size: 12px; color: var(--gray); letter-spacing: 0.5px; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+.detailBody { font-size: 15px; color: var(--light); line-height: 1.9; margin-bottom: 40px; }
+
+.registerPanel { background: var(--charcoal); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.registerText { font-size: 13px; color: var(--gray); line-height: 1.6; max-width: 420px; }
+.btnPrimary { background: var(--gold); color: var(--black); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 14px 28px; border: none; cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; }
+.btnPrimary:hover { background: var(--gold-dim); }
+.btnPrimary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btnSecondary { background: transparent; color: var(--white); font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; padding: 13px 28px; border: 1px solid var(--border); cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap; }
+.btnSecondary:hover { border-color: var(--gold); color: var(--gold); }
+.btnSecondary:disabled { opacity: 0.5; cursor: not-allowed; }
+.registerError { font-size: 12px; color: var(--error); margin-top: 8px; width: 100%; }
+.registerConfirmed { font-size: 12px; color: var(--success); letter-spacing: 0.5px; }
+
+.notFound { text-align: center; padding: 120px 24px; }
+.notFoundTitle { font-family: var(--font-display); font-size: 48px; letter-spacing: 1px; color: var(--gold); margin-bottom: 12px; }
+
+@media (max-width: 640px) {
+  .nav { padding: 16px 24px; }
+  .card { flex-direction: column; align-items: flex-start; }
+  .registerPanel { flex-direction: column; align-items: flex-start; }
+}
