@@ -1,7 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import styles from "@/components/dashboard/dashboard.module.css";
 
-const TIER_PRICE: Record<string, number> = { free: 0, elite: 14.99, pro_ark: 49.99 };
+const TIER_PRICE: Record<string, number> = { free: 0, elite: 14.99, pro_ark: 34.99 };
 const TIER_LABEL: Record<string, string> = { free: "Free", elite: "Elite", pro_ark: "Pro Ark" };
 
 export default async function AdminRevenuePage() {

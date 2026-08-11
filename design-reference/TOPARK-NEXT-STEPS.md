@@ -90,7 +90,7 @@ We built the full **visual experience** of TopArk — every screen a player, coa
 ### PHASE 1 — Foundation (Claude Code)
 5. Convert prototypes to a real Next.js app
 6. Build login/registration with Supabase Auth
-7. Connect Stripe for membership payments (Free, Elite $14.99, Pro Ark $49.99)
+7. Connect Stripe for membership payments (Free, Elite $14.99, Pro Ark $34.99)
 8. Build athlete profile system with database
 
 ### PHASE 2 — Core Features (Claude Code)
@@ -132,7 +132,7 @@ We built the full **visual experience** of TopArk — every screen a player, coa
 ### Stream 1 — Memberships
 - Free: $0 (up to 4 messages/month, limited features)
 - Elite: $14.99/month or $119.99/year
-- Pro Ark: $49.99/month or $399.99/year
+- Pro Ark: $34.99/month or $399.99/year
 
 ### Stream 2 — Combine Registration Fees
 - Standard registration per athlete per event
