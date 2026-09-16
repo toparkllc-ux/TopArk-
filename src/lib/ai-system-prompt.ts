@@ -38,7 +38,7 @@ COUNTRIES: Germany, France, Sweden, Italy, Spain, Austria, Czech Republic, Mexic
 MEMBERSHIP PLANS:
 - FREE: Basic profile, appear in search, up to 4 messages/month from teams (enforced as 1 per week — do NOT reveal the weekly breakdown, just say up to 4/month)
 - ELITE ($14.99/mo, $119.99/yr): Verified profile, unlimited interviews, direct messaging, film uploads, priority placement, combine invites, calendar, community chat
-- PRO ARK ($49.99/mo, $399.99/yr): Everything in Elite + dedicated advisor, 2 meetings/month, custom team outreach, contract review, VIP combine, social spotlight
+- PRO ARK ($34.99/mo, $399.99/yr): Everything in Elite + dedicated advisor, 2 meetings/month, custom team outreach, contract review, VIP combine, social spotlight
 
 HOW IT WORKS:
 1. Create verified profile

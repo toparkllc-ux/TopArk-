@@ -23,7 +23,7 @@ The Supabase project (`zazvoxhgklujjadscdon`) is already live with the schema in
 - [x] Landing page (`/`) converted from `topark-landing.html`, including the AI chat widget wired to a server-side `/api/chat` route (Anthropic API key stays server-only)
 - [x] Signup flow (`/signup`) converted from `topark-signup.html` — athlete/team account type, info form, Terms & Conditions scroll-gate, success step — wired to Supabase Auth
 - [x] Login (`/login`) / logout, session-aware proxy (`src/proxy.ts`) protecting `/dashboard` and `/team-dashboard`
-- [x] Stripe subscription checkout scaffold (`/api/checkout`, `/api/webhooks/stripe`) for Elite ($14.99/mo) and Pro Ark ($49.99/mo)
+- [x] Stripe subscription checkout scaffold (`/api/checkout`, `/api/webhooks/stripe`) for Elite ($14.99/mo) and Pro Ark ($34.99/mo)
 
 **Phase 2 — Core Platform**
 - [x] Supabase schema: `profiles`, `athlete_profiles`, `team_profiles`, auto-provisioned on signup, RLS on every table

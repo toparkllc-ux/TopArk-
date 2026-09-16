@@ -49,7 +49,7 @@ const PLANS: {
   {
     id: "pro_ark",
     name: "PRO ARK",
-    price: "$49.99",
+    price: "$34.99",
     period: "per month",
     features: [
       { text: "Everything in Elite" },

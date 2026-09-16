@@ -83,7 +83,7 @@ export default function Membership() {
             </div>
             <div className={styles.planName}>PRO ARK</div>
             <div className={styles.planPrice}>
-              <span className={styles.planPriceNum}>$49.99</span>
+              <span className={styles.planPriceNum}>$34.99</span>
               <span className={styles.planPricePeriod}>/ month</span>
             </div>
             <p className={styles.planDesc}>
