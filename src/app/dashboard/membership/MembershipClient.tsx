@@ -31,7 +31,7 @@ const PLANS: {
   {
     id: "elite",
     name: "ELITE",
-    price: "$14.99",
+    price: "$29.00",
     period: "per month",
     features: [
       { text: "Full verified athlete profile" },
@@ -49,7 +49,7 @@ const PLANS: {
   {
     id: "pro_ark",
     name: "PRO ARK",
-    price: "$49.99",
+    price: "$34.99",
     period: "per month",
     features: [
       { text: "Everything in Elite" },
