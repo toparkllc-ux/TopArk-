@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "@/components/dashboard/dashboard.module.css";
 import AppointmentModal from "@/components/dashboard/AppointmentModal";
+import { createClient } from "@/lib/supabase/client";
 
 type EventKind = "interview" | "meeting" | "combine";
 export type CalendarEvent = { id: string; title: string; detail: string | null; kind: EventKind; startsAt: string };
@@ -38,21 +40,36 @@ const apptColor: Record<EventKind, string | undefined> = {
 };
 
 export default function CalendarClient({ initialEvents }: { initialEvents: CalendarEvent[] }) {
+  const router = useRouter();
   const today = useMemo(() => new Date(), []);
   const [viewDate, setViewDate] = useState(new Date(today.getFullYear(), today.getMonth(), 1));
   const [showModal, setShowModal] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [localEvents, setLocalEvents] = useState<CalendarEvent[]>(initialEvents);
 
   const events: CalEvent[] = useMemo(
     () =>
-      initialEvents.map((e) => ({
+      localEvents.map((e) => ({
         id: e.id,
         date: new Date(e.startsAt),
         title: e.title,
         detail: e.detail,
         kind: e.kind,
       })),
-    [initialEvents]
+    [localEvents]
   );
+
+  async function handleDelete(id: string) {
+    if (!confirm("Delete this appointment?")) return;
+    setDeletingId(id);
+    const supabase = createClient();
+    const { error } = await supabase.from("appointments").delete().eq("id", id);
+    setDeletingId(null);
+    if (!error) {
+      setLocalEvents((prev) => prev.filter((e) => e.id !== id));
+      router.refresh();
+    }
+  }
 
   const year = viewDate.getFullYear();
   const month = viewDate.getMonth();
@@ -162,7 +179,7 @@ export default function CalendarClient({ initialEvents }: { initialEvents: Calen
           ) : (
             <div className={styles.apptList}>
               {upcomingEvents.map((e) => (
-                <div className={`${styles.apptItem} ${apptItemClass[e.kind]}`} key={e.id}>
+                <div className={`${styles.apptItem} ${apptItemClass[e.kind]}`} key={e.id} style={{ position: "relative" }}>
                   <div className={styles.apptDate}>
                     <div className={styles.apptDateDay} style={{ color: apptColor[e.kind] }}>
                       {e.date.getDate()}
@@ -177,6 +194,28 @@ export default function CalendarClient({ initialEvents }: { initialEvents: Calen
                   <div className={styles.apptTime}>
                     {e.date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}
                   </div>
+                  <button
+                    onClick={() => handleDelete(e.id)}
+                    disabled={deletingId === e.id}
+                    aria-label="Delete appointment"
+                    style={{
+                      marginLeft: 8,
+                      background: "none",
+                      border: "none",
+                      color: "var(--gray)",
+                      cursor: "pointer",
+                      fontSize: 14,
+                      padding: "2px 4px",
+                      borderRadius: 4,
+                      lineHeight: 1,
+                      opacity: deletingId === e.id ? 0.4 : 0.6,
+                      transition: "opacity 0.15s, color 0.15s",
+                    }}
+                    onMouseEnter={(el) => (el.currentTarget.style.color = "var(--error)")}
+                    onMouseLeave={(el) => (el.currentTarget.style.color = "var(--gray)")}
+                  >
+                    {deletingId === e.id ? "…" : "✕"}
+                  </button>
                 </div>
               ))}
             </div>

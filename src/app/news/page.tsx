@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublishedNewsPosts, formatNewsMeta } from "@/lib/news/getNewsPosts";
+import { createClient } from "@/lib/supabase/server";
 import styles from "./news.module.css";
 
 export const metadata: Metadata = {
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
 
 export default async function NewsPage() {
   const posts = await getPublishedNewsPosts();
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
 
   return (
     <>
@@ -17,9 +21,15 @@ export default async function NewsPage() {
         <Link href="/" className={styles.navLogo}>
           TOPARK
         </Link>
-        <Link href="/" className={styles.navBack}>
-          ← Back to Home
-        </Link>
+        {isLoggedIn ? (
+          <Link href="/dashboard" className={styles.navBack}>
+            ← Back to Dashboard
+          </Link>
+        ) : (
+          <Link href="/" className={styles.navBack}>
+            ← Back to Home
+          </Link>
+        )}
       </nav>
       <div className={styles.wrap}>
         <div className={styles.eyebrow}>Latest Updates</div>

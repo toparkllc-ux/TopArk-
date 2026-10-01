@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCurrentUser } from "@/lib/supabase/queries";
 import styles from "@/components/dashboard/dashboard.module.css";
 
@@ -21,8 +22,53 @@ export default async function DashboardOverviewPage() {
   const current = await getCurrentUser();
   const isPaid = current?.accountType === "athlete" && current.profile.membership_tier !== "free";
 
+  const isFree = !current || current.accountType !== "athlete" || current.profile.membership_tier === "free";
+
   return (
     <>
+      {isFree && (
+        <div
+          style={{
+            background: "linear-gradient(135deg, rgba(245,196,0,0.12) 0%, rgba(245,196,0,0.04) 100%)",
+            border: "1px solid rgba(245,196,0,0.35)",
+            borderLeft: "3px solid var(--gold)",
+            borderRadius: 8,
+            padding: "14px 20px",
+            marginBottom: 20,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 16,
+            flexWrap: "wrap",
+          }}
+        >
+          <div>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 13, letterSpacing: 1, color: "var(--gold)", marginBottom: 2 }}>
+              ⚡ UNLOCK YOUR FULL POTENTIAL
+            </div>
+            <div style={{ fontSize: 13, color: "var(--gray)" }}>
+              Upgrade to Elite or Pro Ark for unlimited messaging, priority placement, verified badge & more.
+            </div>
+          </div>
+          <Link
+            href="/dashboard/membership"
+            style={{
+              background: "var(--gold)",
+              color: "#000",
+              fontFamily: "var(--font-display)",
+              fontSize: 12,
+              letterSpacing: 1,
+              fontWeight: 700,
+              padding: "8px 18px",
+              borderRadius: 4,
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            UPGRADE NOW
+          </Link>
+        </div>
+      )}
       <div className={styles.grid4} style={{ marginBottom: 24 }}>
         <div className={styles.statCard}>
           <div className={styles.eyebrow}>Messages</div>

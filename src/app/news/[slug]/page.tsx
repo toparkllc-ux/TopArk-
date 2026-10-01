@@ -24,6 +24,8 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
 
   const supabase = await createClient();
   await supabase.rpc("increment_news_post_views", { post_slug: slug });
+  const { data: { user } } = await supabase.auth.getUser();
+  const isLoggedIn = !!user;
 
   return (
     <>
@@ -31,9 +33,16 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
         <Link href="/" className={styles.navLogo}>
           TOPARK
         </Link>
-        <Link href="/news" className={styles.navBack}>
-          ← Back to News
-        </Link>
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          <Link href="/news" className={styles.navBack}>
+            ← News
+          </Link>
+          {isLoggedIn && (
+            <Link href="/dashboard" className={styles.navBack}>
+              Dashboard →
+            </Link>
+          )}
+        </div>
       </nav>
       <div className={styles.article}>
         <div className={styles.articleTag}>{post.tag}</div>

@@ -6,25 +6,49 @@ import styles from "@/components/dashboard/dashboard.module.css";
 import { createClient } from "@/lib/supabase/client";
 import type { Tables } from "@/lib/supabase/types";
 
+// Unit conversion helpers (stored as cm/kg in DB, displayed as ft/in & lbs for athletes)
+function cmToFeetInches(cm: number): { feet: number; inches: number } {
+  const totalInches = cm / 2.54;
+  const feet = Math.floor(totalInches / 12);
+  const inches = Math.round(totalInches % 12);
+  return { feet, inches };
+}
+function feetInchesToCm(feet: number, inches: number): number {
+  return Math.round((feet * 12 + inches) * 2.54);
+}
+function kgToLbs(kg: number): number {
+  return Math.round(kg * 2.20462);
+}
+function lbsToKg(lbs: number): number {
+  return Math.round(lbs / 2.20462);
+}
+
 const POSITIONS = [
   "Quarterback", "Running Back", "Wide Receiver", "Tight End", "Offensive Lineman",
   "Defensive Lineman", "Linebacker", "Cornerback", "Safety", "Kicker / Punter",
 ];
 
 const TRACKED_FIELDS = [
-  "first_name", "last_name", "position", "country", "height_cm", "weight_kg",
+  "first_name", "last_name", "position", "country", "height_feet", "weight_lbs",
   "forty_yard_dash", "bio", "highlight_url",
 ] as const;
 
 export default function ProfileForm({ profile, userId }: { profile: Tables<"athlete_profiles">; userId: string }) {
   const router = useRouter();
+
+  // Convert stored cm/kg to US display units for initial state
+  const initHeight = profile.height_cm ? cmToFeetInches(profile.height_cm) : { feet: 0, inches: 0 };
+  const initWeight = profile.weight_kg ? kgToLbs(profile.weight_kg) : 0;
+
   const [form, setForm] = useState({
     first_name: profile.first_name ?? "",
     last_name: profile.last_name ?? "",
     position: profile.position ?? "",
     country: profile.country ?? "",
-    height_cm: profile.height_cm?.toString() ?? "",
-    weight_kg: profile.weight_kg?.toString() ?? "",
+    // US display units (converted back to cm/kg on save)
+    height_feet: initHeight.feet > 0 || profile.height_cm ? initHeight.feet.toString() : "",
+    height_inches: initHeight.feet > 0 || profile.height_cm ? initHeight.inches.toString() : "",
+    weight_lbs: initWeight > 0 || profile.weight_kg ? initWeight.toString() : "",
     forty_yard_dash: profile.forty_yard_dash?.toString() ?? "",
     bio: profile.bio ?? "",
     highlight_url: profile.highlight_url ?? "",
@@ -46,6 +70,12 @@ export default function ProfileForm({ profile, userId }: { profile: Tables<"athl
     setSaving(true);
     setMessage("");
     const supabase = createClient();
+    // Convert US units back to metric for DB storage
+    const heightCm = form.height_feet
+      ? feetInchesToCm(Number(form.height_feet), Number(form.height_inches || "0"))
+      : null;
+    const weightKg = form.weight_lbs ? lbsToKg(Number(form.weight_lbs)) : null;
+
     const { error } = await supabase
       .from("athlete_profiles")
       .update({
@@ -53,8 +83,8 @@ export default function ProfileForm({ profile, userId }: { profile: Tables<"athl
         last_name: form.last_name,
         position: form.position || null,
         country: form.country || null,
-        height_cm: form.height_cm ? Number(form.height_cm) : null,
-        weight_kg: form.weight_kg ? Number(form.weight_kg) : null,
+        height_cm: heightCm,
+        weight_kg: weightKg,
         forty_yard_dash: form.forty_yard_dash ? Number(form.forty_yard_dash) : null,
         bio: form.bio || null,
         highlight_url: form.highlight_url || null,
@@ -135,22 +165,48 @@ export default function ProfileForm({ profile, userId }: { profile: Tables<"athl
           </div>
           <div className={styles.formGroup} style={{ display: "flex", gap: 12 }}>
             <div style={{ flex: 1 }}>
-              <label className={styles.formLabel}>Height (cm)</label>
-              <input
-                className={styles.formInput}
-                type="number"
-                value={form.height_cm}
-                onChange={(e) => setForm({ ...form, height_cm: e.target.value })}
-              />
+              <label className={styles.formLabel}>Height</label>
+              <div style={{ display: "flex", gap: 6 }}>
+                <div style={{ flex: 1, position: "relative" }}>
+                  <input
+                    className={styles.formInput}
+                    type="number"
+                    min="0"
+                    max="8"
+                    placeholder="ft"
+                    value={form.height_feet}
+                    onChange={(e) => setForm({ ...form, height_feet: e.target.value })}
+                    style={{ paddingRight: 28 }}
+                  />
+                  <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", fontSize: 11, color: "var(--gray)", pointerEvents: "none" }}>ft</span>
+                </div>
+                <div style={{ flex: 1, position: "relative" }}>
+                  <input
+                    className={styles.formInput}
+                    type="number"
+                    min="0"
+                    max="11"
+                    placeholder="in"
+                    value={form.height_inches}
+                    onChange={(e) => setForm({ ...form, height_inches: e.target.value })}
+                    style={{ paddingRight: 28 }}
+                  />
+                  <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", fontSize: 11, color: "var(--gray)", pointerEvents: "none" }}>in</span>
+                </div>
+              </div>
             </div>
-            <div style={{ flex: 1 }}>
-              <label className={styles.formLabel}>Weight (kg)</label>
+            <div style={{ flex: 1, position: "relative" }}>
+              <label className={styles.formLabel}>Weight</label>
               <input
                 className={styles.formInput}
                 type="number"
-                value={form.weight_kg}
-                onChange={(e) => setForm({ ...form, weight_kg: e.target.value })}
+                min="0"
+                placeholder="lbs"
+                value={form.weight_lbs}
+                onChange={(e) => setForm({ ...form, weight_lbs: e.target.value })}
+                style={{ paddingRight: 36 }}
               />
+              <span style={{ position: "absolute", right: 10, bottom: 10, fontSize: 11, color: "var(--gray)", pointerEvents: "none" }}>lbs</span>
             </div>
           </div>
           <div className={styles.formGroup}>

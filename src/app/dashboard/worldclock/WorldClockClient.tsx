@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "@/components/dashboard/dashboard.module.css";
 
 const CITIES = [
-  { id: "austin", flag: "🇺🇸", city: "AUSTIN", country: "Texas, USA (HQ)", tz: "America/Chicago", reference: true },
+  { id: "austin", flag: "🇺🇸", city: "AUSTIN", country: "Texas, USA", tz: "America/Chicago", reference: true },
   { id: "berlin", flag: "🇩🇪", city: "BERLIN", country: "Germany", tz: "Europe/Berlin" },
   { id: "paris", flag: "🇫🇷", city: "PARIS", country: "France", tz: "Europe/Paris" },
   { id: "stockholm", flag: "🇸🇪", city: "STOCKHOLM", country: "Sweden", tz: "Europe/Stockholm" },
@@ -85,7 +85,7 @@ export default function WorldClockClient() {
           const diffHours = diffMinutes / 60;
           const diffLabel =
             c.reference
-              ? "TOPARK HQ"
+              ? "BASE"
               : diffHours === 0
                 ? "SAME TIME"
                 : `${diffHours > 0 ? "+" : ""}${diffHours}H VS AUSTIN`;
@@ -99,7 +99,7 @@ export default function WorldClockClient() {
 
           return (
             <div className={`${styles.clockCard} ${c.reference ? styles.clockCardLocal : ""}`} key={c.id}>
-              {c.reference && <div className={styles.clockLocalTag}>📍 TopArk HQ</div>}
+              {c.reference && <div className={styles.clockLocalTag}>📍 Austin, TX</div>}
               <div className={styles.clockFlag}>{c.flag}</div>
               <div className={styles.clockCity}>{c.city}</div>
               <div className={styles.clockCountry}>{c.country}</div>
