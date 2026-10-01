@@ -108,6 +108,12 @@ export default function LoginForm() {
           </form>
 
           <div className={styles.footerNote}>
+            <Link href="/forgot-password" style={{ color: "var(--gray)", fontSize: 13 }}>
+              Forgot your password?
+            </Link>
+          </div>
+
+          <div className={styles.footerNote}>
             New to TopArk? <Link href="/signup">Create an account</Link>
           </div>
         </div>
