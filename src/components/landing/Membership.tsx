@@ -50,7 +50,7 @@ export default function Membership() {
             <div className={styles.planBadge}>⚡ Most Popular</div>
             <div className={styles.planName}>ELITE</div>
             <div className={styles.planPrice}>
-              <span className={styles.planPriceNum}>$29.00</span>
+              <span className={styles.planPriceNum}>$14.99</span>
               <span className={styles.planPricePeriod}>/ month</span>
             </div>
             <p className={styles.planDesc}>
@@ -71,7 +71,7 @@ export default function Membership() {
             </ul>
             <Link href="/signup">
               <button className={`${styles.btnPrimary} ${styles.planCta}`}>
-                Join Elite — $29/mo
+                Join Elite — $14.99/mo
               </button>
             </Link>
           </div>

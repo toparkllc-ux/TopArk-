@@ -31,7 +31,7 @@ const PLANS: {
   {
     id: "elite",
     name: "ELITE",
-    price: "$29.00",
+    price: "$14.99",
     period: "per month",
     features: [
       { text: "Full verified athlete profile" },
